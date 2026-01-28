@@ -4,7 +4,7 @@ import "./Welcome.css";
 export default function Welcome() {
   const name = "Pont Pont";
   const guest = "Guest";
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <>
