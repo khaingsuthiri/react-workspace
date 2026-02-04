@@ -1,26 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Login() {
-  const [username, setUsername] = useState("pont");
-  const fullname = "Ma" + username;
+  // const [username, setUsername] = useState("");
+  const inputElement = useRef<HTMLInputElement>(null);
 
-  function login(name: string) {
-    setUsername("He He");
-    console.log("Login .....", username);
-    setUsername((prevUsername) => prevUsername + "ha ha");
-    console.log("Login .....", username);
+  function login() {
+    console.log("Username :::", inputElement.current?.value);
   }
 
   return (
     <>
-      <h1>{fullname}</h1>
       <input
         type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        // value={username}
+        // onChange={(e) => setUsername(e.target.value)}
+        ref={inputElement}
       />
       <br />
-      <button onClick={() => login("pont")}>Login</button>
+      <button onClick={login}>Login</button>
     </>
   );
 }

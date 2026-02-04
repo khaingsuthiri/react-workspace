@@ -1,15 +1,9 @@
-import Parent from "./components/Parent";
-import Todos from "./components/Todos";
-import Welcome from "./components/Welcome";
+import Login from "./components/Login";
 
 export default function App() {
   return (
     <>
-      <Welcome />
-      <Todos />
-      <br />
-      <br />
-      <Parent />
+      <Login />
     </>
   );
 }
