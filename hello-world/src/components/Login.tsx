@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 export default function Login() {
+  const portalRoot = document.getElementById("portal-root");
   // const [username, setUsername] = useState("");
   const inputElement = useRef<HTMLInputElement>(null);
 
@@ -8,7 +10,11 @@ export default function Login() {
     console.log("Username :::", inputElement.current?.value);
   }
 
-  return (
+  if (!portalRoot) {
+    return null;
+  }
+
+  return createPortal(
     <>
       <input
         type="text"
@@ -18,6 +24,7 @@ export default function Login() {
       />
       <br />
       <button onClick={login}>Login</button>
-    </>
+    </>,
+    portalRoot,
   );
 }
