@@ -1,4 +1,5 @@
 import { useImperativeHandle, type Ref } from "react";
+import type { TodoItem } from "./Todos";
 
 export type TodoRef = {
   greet: () => void;
@@ -6,9 +7,10 @@ export type TodoRef = {
 
 type Props = {
   ref: Ref<TodoRef>;
+  todoItem: TodoItem;
 };
 
-export default function Todo({ ref }: Props) {
+export default function Todo({ ref, todoItem }: Props) {
   function sayGreeting() {
     console.log("Hello");
   }
@@ -17,5 +19,5 @@ export default function Todo({ ref }: Props) {
     greet: sayGreeting,
   }));
 
-  return <li>Todo</li>;
+  return <li>{todoItem.todo}</li>;
 }

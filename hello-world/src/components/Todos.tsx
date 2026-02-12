@@ -1,8 +1,13 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Todo, { type TodoRef } from "./Todo";
 
+export interface TodoItem {
+  id: number;
+  todo: string;
+}
+
 export default function Todos() {
-  const todos = ["sleep", "eat", "go", "drink"];
+  const [todos, setTodos] = useState<TodoItem[]>([]);
 
   const todoEl = useRef<TodoRef>(null);
 
@@ -10,14 +15,24 @@ export default function Todos() {
     todoEl.current?.greet();
   }
 
+  useEffect(() => {
+    async function getTodos() {
+      const response = await fetch("https://dummyjson.com/todos");
+      const data = await response.json();
+      setTodos(data.todos);
+    }
+    getTodos();
+  }, []);
+
   return (
     <>
       <ul>
         {todos.map((todo) => (
-          <Todo ref={todoEl} key={todo} />
+          <Todo ref={todoEl} key={todo.id} todoItem={todo} />
         ))}
       </ul>
       <button onClick={welcomeTest}>Click Here</button>
+      {/* <button onClick={getTodos}>Get All Todos</button> */}
     </>
   );
 }
