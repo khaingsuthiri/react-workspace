@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Todo, { type TodoRef } from "./Todo";
 
 export interface TodoItem {
@@ -11,9 +11,9 @@ export default function Todos() {
 
   const todoEl = useRef<TodoRef>(null);
 
-  function welcomeTest() {
+  const welcomeTest = useCallback(() => {
     todoEl.current?.greet();
-  }
+  }, []);
 
   useEffect(() => {
     async function getTodos() {
@@ -22,7 +22,7 @@ export default function Todos() {
       setTodos(data.todos);
     }
     getTodos();
-  }, []);
+  }, [welcomeTest]);
 
   return (
     <>
