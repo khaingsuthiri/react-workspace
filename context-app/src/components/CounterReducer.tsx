@@ -14,18 +14,14 @@ function reducer(state: number, action: { type: string }) {
 }
 
 export default function CounterReducer() {
-  const [count, dispatcher] = useReducer(reducer, 0);
+  const [count, dispatch] = useReducer(reducer, 0);
 
   return (
     <div>
       <h1>{count}</h1>
-      <button onClick={() => dispatcher({ type: "increment" })}>
-        Increase
-      </button>
-      <button onClick={() => dispatcher({ type: "decrement" })}>
-        Decrease
-      </button>
-      <button onClick={() => dispatcher({ type: "reset" })}>Reset</button>
+      <button onClick={() => dispatch({ type: "increment" })}>Increase</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>Decrease</button>
+      <button onClick={() => dispatch({ type: "reset" })}>Reset</button>
     </div>
   );
 }
